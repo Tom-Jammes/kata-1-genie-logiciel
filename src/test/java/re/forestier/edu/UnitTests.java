@@ -111,4 +111,16 @@ public class UnitTests {
         assertThat(player.getXp(), is(131));
         assertThat(player.retrieveLevel(), is(5));
     }
+
+    @Test
+    @DisplayName("Test adding object when level up")
+    void testAddObject() {
+        player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>());
+
+        assertTrue(player.inventory.isEmpty());
+        assertThat(player.retrieveLevel(), is(1));
+        UpdatePlayer.addXp(player, 20);
+        assertThat(player.retrieveLevel(), is(2));
+        assertThat(player.inventory.size(), is(1));
+    }
 }
