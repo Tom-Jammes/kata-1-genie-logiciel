@@ -1,6 +1,7 @@
 package re.forestier.edu;
 
 import org.junit.jupiter.api.*;
+import re.forestier.edu.rpg.UpdatePlayer;
 import re.forestier.edu.rpg.player;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -71,4 +72,43 @@ public class UnitTests {
         assertEquals(200, player.money);
     }
 
+    @Test
+    @DisplayName("Retrieve level")
+    void testRetrieveLevel() {
+        player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>());
+
+        assertThat(player.getXp(), is(0));
+        assertThat(player.retrieveLevel(), is(1));
+        UpdatePlayer.addXp(player, 9);
+        assertThat(player.getXp(), is(9));
+        assertThat(player.retrieveLevel(), is(1));
+
+        UpdatePlayer.addXp(player, 1);
+        assertThat(player.getXp(), is(10));
+        assertThat(player.retrieveLevel(), is(2));
+        UpdatePlayer.addXp(player, 16);
+        assertThat(player.getXp(), is(26));
+        assertThat(player.retrieveLevel(), is(2));
+
+        UpdatePlayer.addXp(player, 1);
+        assertThat(player.getXp(), is(27));
+        assertThat(player.retrieveLevel(), is(3));
+        UpdatePlayer.addXp(player, 29);
+        assertThat(player.getXp(), is(56));
+        assertThat(player.retrieveLevel(), is(3));
+
+        UpdatePlayer.addXp(player, 1);
+        assertThat(player.getXp(), is(57));
+        assertThat(player.retrieveLevel(), is(4));
+        UpdatePlayer.addXp(player, 53);
+        assertThat(player.getXp(), is(110));
+        assertThat(player.retrieveLevel(), is(4));
+
+        UpdatePlayer.addXp(player, 1);
+        assertThat(player.getXp(), is(111));
+        assertThat(player.retrieveLevel(), is(5));
+        UpdatePlayer.addXp(player, 20);
+        assertThat(player.getXp(), is(131));
+        assertThat(player.retrieveLevel(), is(5));
+    }
 }
