@@ -52,6 +52,16 @@ public class UnitTests {
     }
 
     @Test
+    @DisplayName("Remove money")
+    void testRemoveMoney() {
+        player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>());
+
+        assertEquals(100, player.money);
+        player.removeMoney(50);
+        assertEquals(50, player.money);
+    }
+
+    @Test
     @DisplayName("Add Money")
     void testAddMoney() {
         player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>());
