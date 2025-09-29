@@ -20,6 +20,22 @@ public class UnitTests {
         assertThat(player.getAvatarClass(), is("ADVENTURER"));
         assertThat(player.money, is(100));
         assertTrue(player.inventory.isEmpty());
+
+        player playerDWARF = new player("Jules", "Jules le Sage", "DWARF", 100, new ArrayList<>());
+        assertThat(playerDWARF.playerName, is("Jules"));
+        assertThat(playerDWARF.Avatar_name, is("Jules le Sage"));
+
+        player playerARCHER = new player("Elf", "Elf la belle", "ARCHER", 100, new ArrayList<>());
+        assertThat(playerARCHER.playerName, is("Elf"));
+        assertThat(playerARCHER.Avatar_name, is("Elf la belle"));
+    }
+
+    @Test
+    @DisplayName("Test creation of a new player failed")
+    void testPlayerCreationFailed() {
+        player player = new player("Florian", "Grognak le barbare", "SKELETTON", 100, new ArrayList<>());
+
+        assertThat(player.playerName, is(nullValue()));
     }
 
     @Test
