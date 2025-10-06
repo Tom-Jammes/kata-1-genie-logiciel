@@ -123,4 +123,64 @@ public class UnitTests {
         assertThat(player.retrieveLevel(), is(2));
         assertThat(player.inventory.size(), is(1));
     }
+
+    @Test
+    @DisplayName("Test end of round")
+    void testMajFinTour() {
+        player playerAdventurer = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>());
+        player playerDWARF = new player("Jules", "Jules le Sage", "DWARF", 100, new ArrayList<>());
+        player playerARCHER = new player("Elf", "Elf la belle", "ARCHER", 100, new ArrayList<>());
+
+        playerAdventurer.healthpoints = 50;
+        playerAdventurer.currenthealthpoints = 0;
+        UpdatePlayer.majFinDeTour(playerAdventurer);
+        assertEquals(0, playerAdventurer.currenthealthpoints);
+
+        playerAdventurer.currenthealthpoints = 30;
+        UpdatePlayer.majFinDeTour(playerAdventurer);
+        assertEquals(30, playerAdventurer.currenthealthpoints);
+
+        playerAdventurer.currenthealthpoints = 100;
+        UpdatePlayer.majFinDeTour(playerAdventurer);
+        assertEquals(playerAdventurer.healthpoints, playerAdventurer.currenthealthpoints);
+
+        playerAdventurer.currenthealthpoints = 24;
+        UpdatePlayer.majFinDeTour(playerAdventurer);
+        assertEquals(25, playerAdventurer.currenthealthpoints);
+
+        UpdatePlayer.addXp(playerAdventurer, 30);
+        playerAdventurer.currenthealthpoints = 1;
+        playerAdventurer.healthpoints = 4;
+        assertEquals(3, playerAdventurer.retrieveLevel());
+        UpdatePlayer.majFinDeTour(playerAdventurer);
+        assertEquals(3, playerAdventurer.currenthealthpoints);
+
+        playerDWARF.currenthealthpoints = 10;
+        playerDWARF.healthpoints = 50;
+        UpdatePlayer.majFinDeTour(playerDWARF);
+        assertEquals(11, playerDWARF.currenthealthpoints);
+
+        playerDWARF.inventory.add("Holy Elixir");
+        UpdatePlayer.majFinDeTour(playerDWARF);
+        assertEquals(13, playerDWARF.currenthealthpoints);
+
+        playerARCHER.currenthealthpoints = 10;
+        playerARCHER.healthpoints = 50;
+        UpdatePlayer.majFinDeTour(playerARCHER);
+        assertEquals(11, playerARCHER.currenthealthpoints);
+
+        playerARCHER.inventory.add("Magic Bow");
+        UpdatePlayer.majFinDeTour(playerARCHER);
+        assertEquals(12, playerARCHER.currenthealthpoints);
+        UpdatePlayer.majFinDeTour(playerARCHER);
+        assertEquals(13, playerARCHER.currenthealthpoints);
+        UpdatePlayer.majFinDeTour(playerARCHER);
+        assertEquals(14, playerARCHER.currenthealthpoints);
+        UpdatePlayer.majFinDeTour(playerARCHER);
+        assertEquals(15, playerARCHER.currenthealthpoints);
+        UpdatePlayer.majFinDeTour(playerARCHER);
+        assertEquals(17, playerARCHER.currenthealthpoints);
+        UpdatePlayer.majFinDeTour(playerARCHER);
+        assertEquals(19, playerARCHER.currenthealthpoints);
+    }
 }
