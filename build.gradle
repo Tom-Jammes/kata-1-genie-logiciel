@@ -26,3 +26,8 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+pitest {
+    pitestVersion = '1.15.3'
+    junit5PluginVersion = '1.2.0'
+}
