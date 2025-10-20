@@ -83,6 +83,21 @@ public class UnitTests {
     }
 
     @Test
+    @DisplayName("Level Up AddXp")
+    void testLevelUpAddXp() {
+        player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>());
+
+        assertThat(player.getXp(), is(0));
+        assertThat(player.retrieveLevel(), is(1));
+        assertFalse(UpdatePlayer.addXp(player, 9));
+        assertThat(player.getXp(), is(9));
+        assertThat(player.retrieveLevel(), is(1));
+        assertTrue(UpdatePlayer.addXp(player, 9));
+        assertThat(player.getXp(), is(18));
+        assertThat(player.retrieveLevel(), is(2));
+    }
+
+    @Test
     @DisplayName("Retrieve level")
     void testRetrieveLevel() {
         player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>());
