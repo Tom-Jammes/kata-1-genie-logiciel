@@ -95,6 +95,20 @@ public class UnitTests {
         assertTrue(UpdatePlayer.addXp(player, 9));
         assertThat(player.getXp(), is(18));
         assertThat(player.retrieveLevel(), is(2));
+
+        assertEquals(2, player.abilities.get("INT"));
+        assertEquals(1, player.abilities.get("DEF"));
+        assertEquals(3, player.abilities.get("ATK"));
+        assertEquals(3, player.abilities.get("CHA"));
+
+        assertTrue(UpdatePlayer.addXp(player, 20));
+        assertThat(player.getXp(), is(38));
+        assertThat(player.retrieveLevel(), is(3));
+
+        assertEquals(2, player.abilities.get("INT"));
+        assertEquals(1, player.abilities.get("DEF"));
+        assertEquals(5, player.abilities.get("ATK"));
+        assertEquals(1, player.abilities.get("ALC"));
     }
 
     @Test
