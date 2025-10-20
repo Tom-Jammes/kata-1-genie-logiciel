@@ -175,9 +175,9 @@ public class UnitTests {
         UpdatePlayer.majFinDeTour(playerAdventurer);
         assertEquals(0, playerAdventurer.currenthealthpoints);
 
-        playerAdventurer.currenthealthpoints = 30;
+        playerAdventurer.currenthealthpoints = 25;
         UpdatePlayer.majFinDeTour(playerAdventurer);
-        assertEquals(30, playerAdventurer.currenthealthpoints);
+        assertEquals(25, playerAdventurer.currenthealthpoints);
 
         playerAdventurer.currenthealthpoints = 100;
         UpdatePlayer.majFinDeTour(playerAdventurer);
